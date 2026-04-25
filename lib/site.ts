@@ -19,9 +19,38 @@ export const nav = [
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
   { href: "/focus", label: "Areas of Focus" },
-  { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
 ] as const;
+
+// 4-up services row used on the home page (mirrors the live Squarespace site)
+export const homeServices = [
+  {
+    title: "Youth Counselling",
+    image: "/images/vitaly-gariev-QxkvMblcaJ0.jpg",
+    href: "/services#youth",
+  },
+  {
+    title: "Adult Counselling",
+    image: "/images/priscilla-du-preez-K8XYGbw4Ahg.jpg",
+    href: "/services#individual",
+  },
+  {
+    title: "Couples Counselling",
+    image: "/images/henry-lai-klMk70RskNc.jpg",
+    href: "/services#couples",
+  },
+  {
+    title: "Family Consultation",
+    image: "/images/hoi-an-and-da-nang-photographer-5oJZqQZY0jE.jpg",
+    href: "/services#family",
+  },
+];
+
+export const homeImages = {
+  hero: "/images/paul-summers-ArtVJ-217Cw.jpg",
+  heroFocal: { x: 49.47, y: 30.4 },
+  portrait: "/images/Elle-Group-29.jpg",
+};
 
 export type Service = {
   slug: string;
@@ -80,6 +109,12 @@ export const focusAreas = focusAreasFull.map((f) => ({
 }));
 
 export const testimonials = [
+  {
+    quote:
+      "This is the first time I've felt truly comfortable opening up to a therapist. Jaclyn's warmth and understanding have helped me work through things I've held onto for years. I'm so grateful I found her.",
+    author: "Lauren H.",
+    role: "Viva Counselling Client",
+  },
   {
     quote:
       "Working with Jaclyn has been one of the best investments I've made for myself. She has been there for me during the lowest points, and helped me move from feeling lost to clear about my purpose.",

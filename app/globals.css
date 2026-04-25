@@ -1,73 +1,125 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
-
 :root {
-  --background: #fbf8f3;
+  --background: #fbfaf7;
+  --foreground: #1a1a1a;
+  --muted-foreground: #5e5b53;
   --surface: #ffffff;
-  --surface-muted: #f1ece2;
-  --foreground: #2b2a26;
-  --muted: #6b675e;
-  --border: #e7e0d2;
-  --primary: #5b6f54;
-  --primary-hover: #475a41;
-  --primary-foreground: #ffffff;
-  --accent: #c98a7c;
-  --ring: #5b6f54;
-}
-
-.dark {
-  --background: #14140f;
-  --surface: #1d1c17;
-  --surface-muted: #25241e;
-  --foreground: #ece7db;
-  --muted: #a39c8c;
-  --border: #2f2d26;
-  --primary: #a8bf99;
-  --primary-hover: #c3d6b4;
-  --primary-foreground: #14140f;
-  --accent: #d8a094;
-  --ring: #a8bf99;
+  --surface-cream: #f4f0e8;
+  --border: #e7e1d4;
+  --border-soft: #efeae0;
+  --accent: #c78471;
+  --accent-dark: #b06b56;
+  --accent-soft: #ecd5c9;
 }
 
 @theme inline {
   --color-background: var(--background);
-  --color-surface: var(--surface);
-  --color-surface-muted: var(--surface-muted);
   --color-foreground: var(--foreground);
-  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-surface: var(--surface);
+  --color-surface-cream: var(--surface-cream);
   --color-border: var(--border);
-  --color-primary: var(--primary);
-  --color-primary-hover: var(--primary-hover);
-  --color-primary-foreground: var(--primary-foreground);
+  --color-border-soft: var(--border-soft);
   --color-accent: var(--accent);
-  --color-ring: var(--ring);
-  --font-sans: var(--font-sans);
-  --font-serif: var(--font-serif);
+  --color-accent-dark: var(--accent-dark);
+  --color-accent-soft: var(--accent-soft);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-cormorant);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --background: #14130f;
+    --foreground: #ece6d8;
+    --muted-foreground: #a39c8a;
+    --surface: #1c1b16;
+    --surface-cream: #211f19;
+    --border: #2c2a23;
+    --border-soft: #25231d;
+    --accent: #d59982;
+    --accent-dark: #c78471;
+    --accent-soft: #3a2a23;
+  }
+}
+
+:root.dark {
+  --background: #14130f;
+  --foreground: #ece6d8;
+  --muted-foreground: #a39c8a;
+  --surface: #1c1b16;
+  --surface-cream: #211f19;
+  --border: #2c2a23;
+  --border-soft: #25231d;
+  --accent: #d59982;
+  --accent-dark: #c78471;
+  --accent-soft: #3a2a23;
+}
+
+:root.light {
+  --background: #fbfaf7;
+  --foreground: #1a1a1a;
+  --muted-foreground: #5e5b53;
+  --surface: #ffffff;
+  --surface-cream: #f4f0e8;
+  --border: #e7e1d4;
+  --border-soft: #efeae0;
+  --accent: #c78471;
+  --accent-dark: #b06b56;
+  --accent-soft: #ecd5c9;
 }
 
 html {
-  color-scheme: light;
   scroll-behavior: smooth;
-}
-
-html.dark {
-  color-scheme: dark;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.font-serif {
-  font-family: var(--font-serif), ui-serif, Georgia, serif;
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--foreground);
+}
+
+.italic-display {
+  font-style: italic;
+  font-weight: 300;
+}
+
+.eyebrow {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
 }
 
 ::selection {
-  background: var(--primary);
-  color: var(--primary-foreground);
+  background: var(--foreground);
+  color: var(--background);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
 }

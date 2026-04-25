@@ -1,77 +1,87 @@
 import Link from "next/link";
-import { nav, site } from "@/lib/site";
+import { site } from "@/lib/site";
+
+const footerNav = [
+  { href: "/about", label: "About" },
+  { href: "/services", label: "Services" },
+  { href: "/focus", label: "Areas of Focus" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/contact", label: "Contact" },
+  { href: "/book", label: "Book" },
+];
 
 export function Footer() {
   return (
-    <footer className="mt-24 border-t border-border bg-surface-muted/40">
-      <div
-        role="note"
-        className="border-b border-border bg-surface px-4 py-3 text-center text-xs text-muted sm:px-6 lg:px-8"
-      >
-        <strong className="font-medium text-foreground">In crisis?</strong>{" "}
-        Please call or text <a href="tel:988" className="text-primary hover:underline">988</a>{" "}
+    <footer className="mt-32 border-t border-border bg-surface-cream">
+      <div className="border-b border-border-soft px-6 py-3 text-center text-[12px] tracking-wide text-muted-foreground sm:px-8">
+        In crisis?{" "}
+        <a href="tel:988" className="text-foreground underline-offset-4 hover:underline">
+          Call or text 988
+        </a>{" "}
         (Canada Suicide Crisis Helpline) or 911. Therapy is not a crisis service.
       </div>
 
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-4 lg:px-8">
-        <div className="lg:col-span-2">
-          <p className="font-serif text-2xl">{site.name}</p>
-          <p className="mt-3 max-w-md text-sm text-muted">{site.description}</p>
+      <div className="mx-auto grid max-w-[1280px] gap-12 px-6 py-20 sm:px-8 lg:grid-cols-12">
+        <div className="lg:col-span-5">
+          <p
+            className="text-4xl tracking-[0.01em] text-foreground"
+            style={{ fontFamily: "var(--font-cormorant), serif" }}
+          >
+            VIVA
+          </p>
+          <p className="mt-1 text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
+            Counselling
+          </p>
+          <p className="mt-6 max-w-md text-[15px] leading-relaxed text-muted-foreground">
+            {site.description}
+          </p>
         </div>
 
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-widest text-muted">Visit</p>
-          <p className="mt-3 text-sm">
+        <div className="lg:col-span-3">
+          <p className="eyebrow">Visit</p>
+          <p className="mt-4 text-[15px] leading-relaxed">
             {site.address.line1}
             <br />
             {site.address.line2}
           </p>
+          <p className="mt-4 text-[15px]">
+            <a className="hover:text-accent-dark" href={`mailto:${site.email}`}>
+              {site.email}
+            </a>
+          </p>
         </div>
 
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-widest text-muted">Connect</p>
-          <ul className="mt-3 space-y-2 text-sm">
-            <li>
-              <a className="hover:text-primary" href={`mailto:${site.email}`}>
-                {site.email}
-              </a>
-            </li>
-            <li>
-              <a
-                className="hover:text-primary"
-                href={site.bookingUrl}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Book a free consultation
-              </a>
-            </li>
+        <div className="lg:col-span-4">
+          <p className="eyebrow">Explore</p>
+          <ul className="mt-4 grid grid-cols-2 gap-y-2 text-[15px]">
+            {footerNav.map((item) => (
+              <li key={item.href}>
+                <Link href={item.href} className="text-muted-foreground hover:text-foreground">
+                  {item.label}
+                </Link>
+              </li>
+            ))}
             <li>
               <a
-                className="hover:text-primary"
                 href={site.psychologyToday}
                 target="_blank"
                 rel="noreferrer"
+                className="text-muted-foreground hover:text-foreground"
               >
-                Psychology Today profile
+                Psychology Today
               </a>
             </li>
           </ul>
         </div>
       </div>
 
-      <div className="border-t border-border">
-        <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-3 px-4 py-6 text-xs text-muted sm:flex-row sm:items-center sm:px-6 lg:px-8">
+      <div className="border-t border-border-soft">
+        <div className="mx-auto flex max-w-[1280px] flex-col items-start justify-between gap-3 px-6 py-6 text-[12px] text-muted-foreground sm:flex-row sm:items-center sm:px-8">
           <p>© {new Date().getFullYear()} {site.name}. All rights reserved.</p>
-          <nav className="flex flex-wrap gap-4">
-            {nav.map((item) => (
-              <Link key={item.href} href={item.href} className="hover:text-foreground">
-                {item.label}
-              </Link>
-            ))}
+          <div className="flex gap-6">
             <Link href="/privacy" className="hover:text-foreground">Privacy</Link>
             <Link href="/terms" className="hover:text-foreground">Terms</Link>
-          </nav>
+          </div>
         </div>
       </div>
     </footer>

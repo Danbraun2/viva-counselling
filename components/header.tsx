@@ -9,6 +9,10 @@ import { ThemeToggle } from "./theme-toggle";
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  // Header sits transparent over the homepage hero, opaque elsewhere.
+  const overlayOnHome = pathname === "/" && !scrolled;
 
   useEffect(() => {
     setOpen(false);
@@ -21,114 +25,124 @@ export function Header() {
     };
   }, [open]);
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const onHero = overlayOnHome && !open;
+  const textClass = onHero ? "text-white" : "text-foreground";
+  const mutedClass = onHero ? "text-white/80" : "text-muted-foreground";
+  const headerBg = onHero
+    ? "bg-transparent"
+    : "bg-background/85 backdrop-blur supports-[backdrop-filter]:bg-background/70 border-b border-border-soft";
+
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/70">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-2">
-          <Logo />
-          <span className="font-serif text-lg tracking-wide">{site.shortName}</span>
-          <span className="hidden text-sm text-muted sm:inline">Counselling</span>
+    <header
+      className={`fixed inset-x-0 top-0 z-40 transition-colors duration-300 ${headerBg}`}
+    >
+      <div className="mx-auto flex h-20 max-w-[1500px] items-center justify-between px-6 sm:px-10">
+        <Link href="/" className={`flex items-baseline ${textClass}`}>
+          <span
+            className="text-[34px] tracking-[0.06em] leading-none"
+            style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
+          >
+            VIVA
+          </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden md:flex items-center gap-8">
           {nav.map((item) => {
-            const active = pathname === item.href;
+            const active =
+              item.href === "/"
+                ? pathname === "/"
+                : pathname === item.href || pathname.startsWith(item.href + "/");
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`rounded-full px-4 py-2 text-sm transition ${
-                  active
-                    ? "bg-surface-muted text-foreground"
-                    : "text-muted hover:text-foreground"
-                }`}
+                className={`relative text-[17px] tracking-wide transition ${
+                  active ? textClass : mutedClass
+                } hover:${textClass.replace("text-", "text-")}`}
+                style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
               >
                 {item.label}
+                {active && (
+                  <span
+                    className={`absolute -bottom-1 left-0 right-0 h-px ${
+                      onHero ? "bg-white" : "bg-foreground"
+                    }`}
+                  />
+                )}
               </Link>
             );
           })}
         </nav>
 
-        <div className="flex items-center gap-2">
-          <ThemeToggle />
+        <div className="flex items-center gap-3">
+          <div className={onHero ? "text-white" : ""}>
+            <ThemeToggle />
+          </div>
           <a
             href={site.bookingUrl}
             target="_blank"
             rel="noreferrer"
-            className="hidden rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition hover:bg-primary-hover sm:inline-flex"
+            className="hidden md:inline-flex items-center rounded-md bg-accent px-5 py-2.5 text-[15px] tracking-wide text-white transition hover:bg-accent-dark"
+            style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
           >
-            Book free consult
+            Book now
           </a>
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-surface text-foreground md:hidden"
+            className={`md:hidden inline-flex h-9 w-9 items-center justify-center ${textClass}`}
             aria-label="Toggle menu"
             aria-expanded={open}
           >
             <span className="sr-only">Menu</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-              {open ? (
-                <>
-                  <line x1="18" y1="6" x2="6" y2="18" />
-                  <line x1="6" y1="6" x2="18" y2="18" />
-                </>
-              ) : (
-                <>
-                  <line x1="3" y1="6" x2="21" y2="6" />
-                  <line x1="3" y1="12" x2="21" y2="12" />
-                  <line x1="3" y1="18" x2="21" y2="18" />
-                </>
-              )}
-            </svg>
+            <span className="relative h-4 w-5">
+              <span
+                className={`absolute left-0 top-1 h-px w-5 bg-current transition ${
+                  open ? "translate-y-[7px] rotate-45" : ""
+                }`}
+              />
+              <span
+                className={`absolute left-0 top-[14px] h-px w-5 bg-current transition ${
+                  open ? "-translate-y-[6px] -rotate-45" : ""
+                }`}
+              />
+            </span>
           </button>
         </div>
       </div>
 
       {open && (
-        <div className="border-t border-border bg-background md:hidden">
-          <nav className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-4 sm:px-6">
-            {nav.map((item) => {
-              const active = pathname === item.href;
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`rounded-xl px-4 py-3 text-base ${
-                    active
-                      ? "bg-surface-muted text-foreground"
-                      : "text-muted hover:bg-surface-muted hover:text-foreground"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
+        <div className="border-t border-border-soft bg-background md:hidden">
+          <nav className="mx-auto flex max-w-[1500px] flex-col px-6 py-4 sm:px-10">
+            {nav.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="border-b border-border-soft py-3 text-xl text-foreground last:border-0"
+                style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
+              >
+                {item.label}
+              </Link>
+            ))}
             <a
               href={site.bookingUrl}
               target="_blank"
               rel="noreferrer"
-              className="mt-2 rounded-xl bg-primary px-4 py-3 text-center text-base font-medium text-primary-foreground"
+              className="mt-4 inline-flex items-center justify-center rounded-md bg-accent py-3 text-base tracking-wide text-white"
+              style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
             >
-              Book free consult
+              Book now
             </a>
           </nav>
         </div>
       )}
     </header>
-  );
-}
-
-function Logo() {
-  return (
-    <span
-      aria-hidden
-      className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground"
-    >
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-        <path d="M12 21s-7-4.35-7-10a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 5.65-7 10-7 10z" opacity=".25" />
-        <path d="M12 3c2.5 4 2.5 8 0 14-2.5-6-2.5-10 0-14z" />
-      </svg>
-    </span>
   );
 }
