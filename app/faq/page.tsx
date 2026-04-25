@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { site } from "@/lib/site";
+import { SectionHero } from "@/components/section-hero";
+import { CtaButton } from "@/components/cta-button";
 
 export const metadata = {
   title: "FAQ & Fees",
   description:
-    "Common questions about counselling sessions, fees, insurance coverage, cancellation policy, and getting started at VIVA Counselling.",
+    "Common questions about counselling sessions, fees, insurance, cancellation, and getting started at VIVA Counselling.",
 };
 
 const faqs: { q: string; a: React.ReactNode }[] = [
@@ -51,15 +53,6 @@ const faqs: { q: string; a: React.ReactNode }[] = [
     ),
   },
   {
-    q: "What forms of payment are accepted?",
-    a: (
-      <>
-        Credit card on file via the Jane App booking system. You&apos;ll add
-        your card during your first booking.
-      </>
-    ),
-  },
-  {
     q: "What is your cancellation policy?",
     a: (
       <>
@@ -75,7 +68,7 @@ const faqs: { q: string; a: React.ReactNode }[] = [
       <>
         A 15-minute conversation by phone or video — a chance to share what you
         are looking for, ask any questions, and see if we feel like a good fit.
-        There is no pressure to book.
+        No pressure to book.
       </>
     ),
   },
@@ -104,7 +97,11 @@ const faqs: { q: string; a: React.ReactNode }[] = [
     a: (
       <>
         Yes — couples therapy and family consultations are offered alongside
-        individual work. See the <Link href="/services" className="text-primary hover:underline">services page</Link> for details.
+        individual work. See the{" "}
+        <Link href="/services" className="text-accent-dark hover:underline">
+          services page
+        </Link>{" "}
+        for details.
       </>
     ),
   },
@@ -113,65 +110,64 @@ const faqs: { q: string; a: React.ReactNode }[] = [
 export default function FAQPage() {
   return (
     <>
-      <section className="mx-auto max-w-5xl px-4 pt-16 sm:px-6 sm:pt-24 lg:px-8 lg:pt-32">
-        <p className="text-xs font-semibold uppercase tracking-widest text-primary">
-          FAQ & Fees
-        </p>
-        <h1 className="mt-3 font-serif text-4xl leading-tight sm:text-5xl lg:text-6xl">
-          Practical answers to{" "}
-          <span className="italic text-primary">the things people ask first.</span>
-        </h1>
-        <p className="mt-6 max-w-2xl text-lg text-muted">
-          Don&apos;t see your question? Reach out — I&apos;m happy to chat
-          before you book.
-        </p>
+      <SectionHero
+        image="/images/office-wait-room.webp"
+        overlay={0.4}
+        theme="black"
+        height="medium"
+        align="center"
+      >
+        <div className="text-center">
+          <h1
+            className="text-4xl leading-[1.05] sm:text-5xl md:text-6xl lg:text-[68px]"
+            style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
+          >
+            Frequently asked
+          </h1>
+        </div>
+      </SectionHero>
+
+      <section className="bg-background">
+        <div className="mx-auto max-w-[820px] px-6 py-28 sm:px-10 lg:py-36">
+          <ul className="divide-y divide-border-soft border-y border-border-soft">
+            {faqs.map((f, i) => (
+              <li key={i}>
+                <details className="group">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-6 text-left transition hover:bg-surface-cream/40">
+                    <span
+                      className="text-[22px] leading-tight sm:text-2xl"
+                      style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
+                    >
+                      {f.q}
+                    </span>
+                    <span className="inline-flex h-7 w-7 flex-none items-center justify-center text-muted-foreground transition group-open:rotate-45 group-open:text-accent-dark">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden>
+                        <line x1="12" y1="5" x2="12" y2="19" />
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                      </svg>
+                    </span>
+                  </summary>
+                  <div className="pb-6 text-[17px] leading-[1.8] text-foreground/85">{f.a}</div>
+                </details>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
-      <section className="mx-auto mt-16 max-w-3xl px-4 sm:px-6 lg:px-8">
-        <ul className="divide-y divide-border rounded-3xl border border-border bg-surface">
-          {faqs.map((f, i) => (
-            <li key={i}>
-              <details className="group">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-left font-serif text-lg transition hover:bg-surface-muted/50 sm:px-8">
-                  <span>{f.q}</span>
-                  <span className="inline-flex h-7 w-7 flex-none items-center justify-center rounded-full border border-border text-muted transition group-open:rotate-45 group-open:border-primary group-open:text-primary">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden>
-                      <line x1="12" y1="5" x2="12" y2="19" />
-                      <line x1="5" y1="12" x2="19" y2="12" />
-                    </svg>
-                  </span>
-                </summary>
-                <div className="px-6 pb-6 text-base leading-relaxed text-foreground/90 sm:px-8">
-                  {f.a}
-                </div>
-              </details>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="mx-auto mt-20 max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="rounded-3xl bg-primary px-8 py-12 text-primary-foreground sm:px-12">
-          <div className="grid items-center gap-6 lg:grid-cols-2">
-            <h2 className="font-serif text-3xl sm:text-4xl">
-              Still have questions?
-            </h2>
-            <div className="flex flex-wrap gap-3 lg:justify-end">
-              <a
-                href={site.bookingUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center rounded-full bg-background px-6 py-3 text-sm font-medium text-foreground hover:bg-surface-muted"
-              >
-                Book a free consult
-              </a>
-              <Link
-                href="/contact"
-                className="inline-flex items-center rounded-full border border-primary-foreground/30 px-6 py-3 text-sm font-medium hover:bg-primary-hover"
-              >
-                Contact us
-              </Link>
-            </div>
+      <section className="bg-foreground text-background">
+        <div className="mx-auto max-w-[1100px] px-6 py-28 text-center sm:px-10 lg:py-36">
+          <h2
+            className="text-4xl leading-[1.1] sm:text-5xl md:text-[56px]"
+            style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
+          >
+            Still have questions?
+          </h2>
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
+            <CtaButton href="/contact">Contact us</CtaButton>
+            <CtaButton href={site.bookingUrl} external variant="outline-light">
+              Book a free consult
+            </CtaButton>
           </div>
         </div>
       </section>

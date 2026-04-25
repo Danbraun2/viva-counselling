@@ -2,7 +2,9 @@ export type FocusArea = {
   slug: string;
   title: string;
   short: string;
-  icon: string;
+  icon: string; // path under /images
+  hero?: string; // path under /images for hero background
+  heroOverlay?: number; // 0..1
   quote: { text: string; author: string };
   intro: string[];
   signsTitle: string;
@@ -11,12 +13,25 @@ export type FocusArea = {
   help: string[];
 };
 
+const ICON = {
+  preg: "/images/Preg_White.png",
+  momBaby: "/images/2.-Mom-Baby.png",
+  butterfly: "/images/4.-Butterfly.png",
+  family: "/images/5.-Family.png",
+  heart: "/images/6.-Heart.png",
+  teens: "/images/7.-Teens.png",
+  embrace: "/images/8.-Embrace.png",
+  scale: "/images/9.-Scale.png",
+  flowers: "/images/10.-Flowers_Short.png",
+  heartHand: "/images/Heart_In_Hand.png",
+};
+
 export const focusAreasFull: FocusArea[] = [
   {
     slug: "prenatal-wellness",
     title: "Prenatal Wellness",
     short: "Steady support through pregnancy.",
-    icon: "leaf",
+    icon: ICON.preg,
     quote: {
       text: "The transition into parenthood is one of the most profound life changes a person can experience.",
       author: "",
@@ -44,7 +59,7 @@ export const focusAreasFull: FocusArea[] = [
     slug: "postpartum-support",
     title: "Postpartum Support",
     short: "Tender care for the after.",
-    icon: "moon",
+    icon: ICON.momBaby,
     quote: {
       text: "In the quiet, unseen moments of care, love, and exhaustion — you are doing something extraordinary.",
       author: "",
@@ -73,7 +88,7 @@ export const focusAreasFull: FocusArea[] = [
     slug: "fertility-challenges",
     title: "Fertility Challenges",
     short: "Compassionate care through hope, loss, and uncertainty.",
-    icon: "seed",
+    icon: ICON.scale,
     quote: {
       text: "Courage doesn't always roar. Sometimes courage is the quiet voice at the end of the day saying, 'I will try again tomorrow.'",
       author: "Mary Anne Radmacher",
@@ -101,7 +116,7 @@ export const focusAreasFull: FocusArea[] = [
     slug: "pregnancy-loss-grief",
     title: "Pregnancy Loss & Grief",
     short: "A space to grieve without filtering.",
-    icon: "heart",
+    icon: ICON.butterfly,
     quote: {
       text: "There is no greater agony than bearing an untold story inside of you.",
       author: "Maya Angelou",
@@ -129,7 +144,7 @@ export const focusAreasFull: FocusArea[] = [
     slug: "parenthood",
     title: "Parenthood",
     short: "Showing up imperfectly, day after day.",
-    icon: "home",
+    icon: ICON.family,
     quote: {
       text: "There's no one way to be a perfect parent and a million ways to be a great one.",
       author: "Jill Churchill",
@@ -157,7 +172,7 @@ export const focusAreasFull: FocusArea[] = [
     slug: "adolescence",
     title: "Adolescence",
     short: "A judgment-free space to figure things out.",
-    icon: "spark",
+    icon: ICON.teens,
     quote: {
       text: "It takes courage to grow up and become who you really are.",
       author: "E.E. Cummings",
@@ -185,7 +200,7 @@ export const focusAreasFull: FocusArea[] = [
     slug: "relationships-communication",
     title: "Relationships & Communication",
     short: "Move out of stuck patterns toward connection.",
-    icon: "link",
+    icon: ICON.heartHand,
     quote: {
       text: "To be human is to need others, and this is no flaw or weakness.",
       author: "Dr. Sue Johnson",
@@ -213,7 +228,7 @@ export const focusAreasFull: FocusArea[] = [
     slug: "eating-disorders",
     title: "Eating Disorders",
     short: "Healing your relationship with food, body, and self.",
-    icon: "bowl",
+    icon: ICON.flowers,
     quote: {
       text: "You can't go back and change the beginning, but you can start where you are and change the ending.",
       author: "C.S. Lewis",
@@ -241,7 +256,7 @@ export const focusAreasFull: FocusArea[] = [
     slug: "trauma-ptsd-childhood-wounds",
     title: "Trauma, PTSD & Childhood Wounds",
     short: "From survival mode toward resilience.",
-    icon: "shield",
+    icon: ICON.embrace,
     quote: {
       text: "Trauma is not what happens to us, but what we hold inside in the absence of an empathic witness.",
       author: "Dr. Peter Levine",
@@ -269,7 +284,7 @@ export const focusAreasFull: FocusArea[] = [
     slug: "self-esteem-self-worth",
     title: "Self-Esteem & Self-Worth",
     short: "Quiet the inner critic. Trust your own voice.",
-    icon: "sun",
+    icon: ICON.heart,
     quote: {
       text: "To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment.",
       author: "Ralph Waldo Emerson",

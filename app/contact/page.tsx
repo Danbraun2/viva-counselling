@@ -1,75 +1,118 @@
 import { site } from "@/lib/site";
 import { ContactForm } from "@/components/contact-form";
+import { SectionHero } from "@/components/section-hero";
+import { CtaButton } from "@/components/cta-button";
+
+// Mirrors www.vivacounselling.ca/contact
 
 export const metadata = { title: "Contact" };
 
 export default function ContactPage() {
   return (
     <>
-      <section className="mx-auto max-w-5xl px-4 pt-16 sm:px-6 sm:pt-24 lg:px-8 lg:pt-32">
-        <p className="text-xs font-semibold uppercase tracking-widest text-primary">Contact</p>
-        <h1 className="mt-3 font-serif text-4xl leading-tight sm:text-5xl lg:text-6xl">
-          Let&apos;s find a moment to{" "}
-          <span className="italic text-primary">connect.</span>
-        </h1>
-        <p className="mt-6 max-w-2xl text-lg text-muted">
-          The simplest way to begin is a free 15-minute consult through Jane.
-          Prefer a question first? Send a note — I respond within two business
-          days.
-        </p>
-      </section>
-
-      <section className="mx-auto mt-16 grid max-w-6xl gap-8 px-4 sm:px-6 lg:grid-cols-5 lg:px-8">
-        <div className="rounded-3xl border border-border bg-surface p-8 sm:p-10 lg:col-span-2">
-          <h2 className="font-serif text-2xl">Get in touch</h2>
-          <dl className="mt-6 space-y-5 text-sm">
-            <div>
-              <dt className="text-xs uppercase tracking-widest text-muted">Email</dt>
-              <dd className="mt-1">
-                <a className="hover:text-primary" href={`mailto:${site.email}`}>
-                  {site.email}
-                </a>
-              </dd>
-            </div>
-            <div>
-              <dt className="text-xs uppercase tracking-widest text-muted">Office</dt>
-              <dd className="mt-1">
-                {site.address.line1}
-                <br />
-                {site.address.line2}
-              </dd>
-            </div>
-            <div>
-              <dt className="text-xs uppercase tracking-widest text-muted">Online sessions</dt>
-              <dd className="mt-1">Available across British Columbia.</dd>
-            </div>
-          </dl>
-          <a
-            href={site.bookingUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="mt-8 inline-flex items-center rounded-full bg-primary px-5 py-3 text-sm font-medium text-primary-foreground hover:bg-primary-hover"
+      <SectionHero
+        image="/images/stefan-pflaum-7QlDy1eTt1M.jpg"
+        overlay={0.4}
+        theme="black"
+        height="medium"
+        align="center"
+      >
+        <div className="text-center">
+          <h1
+            className="text-4xl leading-[1.05] sm:text-5xl md:text-6xl lg:text-[68px]"
+            style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
           >
-            Book through Jane →
-          </a>
+            Contact us
+          </h1>
         </div>
+      </SectionHero>
 
-        <div className="lg:col-span-3">
-          <ContactForm />
+      {/* Contact details + form */}
+      <section className="bg-background">
+        <div className="mx-auto grid max-w-[1280px] gap-14 px-6 py-28 sm:px-10 lg:grid-cols-12 lg:gap-20 lg:py-36">
+          <div className="lg:col-span-5">
+            <h2
+              className="text-3xl leading-tight sm:text-4xl md:text-5xl"
+              style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
+            >
+              Get in touch
+            </h2>
+            <p className="mt-6 text-[18px] leading-[1.75] text-foreground/85">
+              The simplest way to begin is a free 15-minute consultation through
+              Jane. Prefer a question first? Send a note and I&apos;ll respond
+              within two business days.
+            </p>
+            <dl className="mt-10 space-y-6">
+              <div>
+                <dt className="text-[12px] uppercase tracking-[0.22em] text-muted-foreground">
+                  Email
+                </dt>
+                <dd className="mt-2">
+                  <a className="hover:text-accent-dark" href={`mailto:${site.email}`}>
+                    {site.email}
+                  </a>
+                </dd>
+              </div>
+              <div>
+                <dt className="text-[12px] uppercase tracking-[0.22em] text-muted-foreground">
+                  Office
+                </dt>
+                <dd className="mt-2 leading-relaxed">
+                  {site.address.line1}
+                  <br />
+                  {site.address.line2}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-[12px] uppercase tracking-[0.22em] text-muted-foreground">
+                  Online sessions
+                </dt>
+                <dd className="mt-2">Available across British Columbia.</dd>
+              </div>
+            </dl>
+            <div className="mt-10">
+              <CtaButton href={site.bookingUrl} external>
+                Book through Jane
+              </CtaButton>
+            </div>
+          </div>
+
+          <div className="lg:col-span-7">
+            <ContactForm />
+          </div>
         </div>
       </section>
 
-      <section className="mx-auto mt-20 max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="overflow-hidden rounded-3xl border border-border">
-          <iframe
-            title="VIVA Counselling office on Granville Street, Vancouver"
-            src="https://www.google.com/maps?q=2780+Granville+Street,+Vancouver,+BC&output=embed"
-            width="100%"
-            height="380"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            className="block w-full"
-          />
+      <section className="bg-surface-cream">
+        <div className="mx-auto max-w-[1280px] px-6 py-12 sm:px-10">
+          <div className="overflow-hidden">
+            <iframe
+              title="VIVA Counselling office on Granville Street, Vancouver"
+              src="https://www.google.com/maps?q=2780+Granville+Street,+Vancouver,+BC&output=embed"
+              width="100%"
+              height="380"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="block w-full border-0"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="bg-foreground text-background">
+        <div className="mx-auto max-w-[1100px] px-6 py-28 text-center sm:px-10 lg:py-36">
+          <h2
+            className="text-4xl leading-[1.1] sm:text-5xl md:text-[56px]"
+            style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
+          >
+            Get started with Viva Counselling today.
+          </h2>
+          <div className="mt-10 flex justify-center">
+            <CtaButton href={site.bookingUrl} external>
+              Book now
+            </CtaButton>
+          </div>
         </div>
       </section>
     </>

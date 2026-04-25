@@ -1,8 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { focusAreasFull, focusBySlug } from "@/lib/focus";
-import { FocusIcon } from "@/components/focus-icon";
 import { site } from "@/lib/site";
+import { SectionHero } from "@/components/section-hero";
+import { CtaButton } from "@/components/cta-button";
 
 export function generateStaticParams() {
   return focusAreasFull.map((f) => ({ slug: f.slug }));
@@ -16,10 +18,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const area = focusBySlug[slug];
   if (!area) return {};
-  return {
-    title: area.title,
-    description: area.short,
-  };
+  return { title: area.title, description: area.short };
 }
 
 export default async function FocusPage({
@@ -31,160 +30,144 @@ export default async function FocusPage({
   const area = focusBySlug[slug];
   if (!area) notFound();
 
-  const others = focusAreasFull.filter((f) => f.slug !== slug).slice(0, 3);
+  const others = focusAreasFull.filter((f) => f.slug !== slug);
 
   return (
     <>
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute -top-32 -left-32 h-80 w-80 rounded-full bg-primary/15 blur-3xl" />
-          <div className="absolute -bottom-32 -right-32 h-80 w-80 rounded-full bg-accent/15 blur-3xl" />
-        </div>
-        <div className="mx-auto max-w-5xl px-4 pt-16 sm:px-6 sm:pt-24 lg:px-8 lg:pt-32">
-          <Link
-            href="/focus"
-            className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-primary hover:underline"
+      <SectionHero
+        image="/images/stefan-pflaum-7QlDy1eTt1M.jpg"
+        overlay={0.5}
+        theme="black"
+        height="medium"
+        align="center"
+      >
+        <div className="mx-auto max-w-3xl text-center">
+          <p
+            className="text-2xl italic leading-snug sm:text-3xl md:text-[34px]"
+            style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300 }}
           >
-            ← All areas of focus
-          </Link>
-          <div className="mt-6 flex items-center gap-4">
-            <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-              <FocusIcon name={area.icon} />
-            </span>
-            <h1 className="font-serif text-4xl leading-tight sm:text-5xl lg:text-6xl">
+            &ldquo;{area.quote.text}&rdquo;
+          </p>
+          {area.quote.author && (
+            <p
+              className="mt-6 text-[15px] tracking-[0.04em]"
+              style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
+            >
+              — {area.quote.author}
+            </p>
+          )}
+        </div>
+      </SectionHero>
+
+      {/* Title + intro */}
+      <section className="bg-background">
+        <div className="mx-auto max-w-[1100px] px-6 py-28 sm:px-10 lg:py-36">
+          <div className="flex flex-col items-center text-center">
+            <div className="relative h-24 w-24 sm:h-28 sm:w-28">
+              <Image src={area.icon} alt="" fill sizes="112px" className="object-contain" />
+            </div>
+            <h1
+              className="mt-8 text-4xl leading-[1.1] sm:text-5xl md:text-[56px]"
+              style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
+            >
               {area.title}
             </h1>
           </div>
-          {area.quote.text && (
-            <figure className="mt-8 max-w-3xl">
-              <blockquote className="font-serif text-xl italic leading-relaxed text-foreground/90 sm:text-2xl">
-                &ldquo;{area.quote.text}&rdquo;
-              </blockquote>
-              {area.quote.author && (
-                <figcaption className="mt-3 text-sm text-muted">
-                  — {area.quote.author}
-                </figcaption>
-              )}
-            </figure>
-          )}
-        </div>
-      </section>
-
-      <section className="mx-auto mt-12 grid max-w-5xl gap-12 px-4 sm:px-6 lg:grid-cols-3 lg:px-8">
-        <div className="space-y-5 text-base leading-relaxed text-foreground/90 lg:col-span-2">
-          {area.intro.map((p, i) => (
-            <p key={i}>{p}</p>
-          ))}
-        </div>
-        <aside className="rounded-3xl border border-border bg-surface-muted/50 p-6">
-          <p className="text-xs font-semibold uppercase tracking-widest text-primary">
-            How sessions work
-          </p>
-          <ul className="mt-4 space-y-3 text-sm">
-            <li>50 minutes per session</li>
-            <li>Online or in person at our Granville Street office</li>
-            <li>$185 individual / $215 couples & family</li>
-            <li>Free 15-minute consultation to start</li>
-          </ul>
-          <a
-            href={site.bookingUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="mt-6 inline-flex items-center rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary-hover"
-          >
-            Book a free consult →
-          </a>
-        </aside>
-      </section>
-
-      <section className="mx-auto mt-20 max-w-5xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-12 rounded-3xl border border-border bg-surface p-8 sm:p-12 lg:grid-cols-2 lg:p-16">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-primary">
-              Awareness
-            </p>
-            <h2 className="mt-3 font-serif text-2xl sm:text-3xl">
-              {area.signsTitle}
-            </h2>
-            <ul className="mt-6 space-y-3 text-base">
-              {area.signs.map((s) => (
-                <li key={s} className="flex gap-3">
-                  <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-primary" />
-                  <span>{s}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-primary">
-              Approach
-            </p>
-            <h2 className="mt-3 font-serif text-2xl sm:text-3xl">
-              {area.helpTitle}
-            </h2>
-            <div className="mt-6 space-y-4 text-base leading-relaxed text-foreground/90">
-              {area.help.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
+          <div className="mx-auto mt-12 max-w-3xl space-y-5 text-[18px] leading-[1.8] text-foreground/85">
+            {area.intro.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="mx-auto mt-20 max-w-5xl px-4 sm:px-6 lg:px-8">
-        <p className="text-xs font-semibold uppercase tracking-widest text-primary">
-          Related support
-        </p>
-        <h2 className="mt-3 font-serif text-2xl sm:text-3xl">
-          You might also be exploring
-        </h2>
-        <ul className="mt-6 grid gap-4 sm:grid-cols-3">
-          {others.map((o) => (
-            <li key={o.slug}>
-              <Link
-                href={`/focus/${o.slug}`}
-                className="group flex h-full flex-col rounded-2xl border border-border bg-surface p-5 transition hover:border-primary/40"
-              >
-                <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-primary">
-                  <FocusIcon name={o.icon} />
-                </span>
-                <h3 className="mt-4 font-serif text-base">{o.title}</h3>
-                <span className="mt-3 text-xs text-primary group-hover:underline">
-                  Read more →
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="mx-auto mt-24 max-w-5xl px-4 sm:px-6 lg:px-8">
-        <div className="rounded-3xl bg-primary px-8 py-12 text-primary-foreground sm:px-12">
-          <div className="grid items-center gap-6 lg:grid-cols-2">
+      {/* Signs + Help (two-column) */}
+      <section className="bg-surface-cream">
+        <div className="mx-auto max-w-[1100px] px-6 py-28 sm:px-10 lg:py-36">
+          <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
             <div>
-              <h2 className="font-serif text-3xl sm:text-4xl">
-                Ready when you are.
+              <h2
+                className="text-3xl leading-tight sm:text-4xl"
+                style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
+              >
+                {area.signsTitle}
               </h2>
-              <p className="mt-3 text-primary-foreground/80">
-                A free 15-minute consult is the easiest way to start.
-              </p>
+              <ul className="mt-8 space-y-4 text-[17px] leading-[1.7]">
+                {area.signs.map((s) => (
+                  <li key={s} className="flex gap-3">
+                    <span className="mt-3 h-1 w-2 flex-none bg-accent" />
+                    <span>{s}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <div className="flex flex-wrap gap-3 lg:justify-end">
-              <a
-                href={site.bookingUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center rounded-full bg-background px-6 py-3 text-sm font-medium text-foreground hover:bg-surface-muted"
+            <div>
+              <h2
+                className="text-3xl leading-tight sm:text-4xl"
+                style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
               >
-                Book a free consult
-              </a>
-              <Link
-                href="/contact"
-                className="inline-flex items-center rounded-full border border-primary-foreground/30 px-6 py-3 text-sm font-medium hover:bg-primary-hover"
-              >
-                Contact us
-              </Link>
+                {area.helpTitle}
+              </h2>
+              <div className="mt-8 space-y-5 text-[17px] leading-[1.8] text-foreground/85">
+                {area.help.map((p, i) => (
+                  <p key={i}>{p}</p>
+                ))}
+              </div>
             </div>
+          </div>
+          <div className="mt-16 text-center">
+            <CtaButton href={site.bookingUrl} external>
+              Book a free consultation
+            </CtaButton>
+          </div>
+        </div>
+      </section>
+
+      {/* Other areas */}
+      <section className="bg-background">
+        <div className="mx-auto max-w-[1280px] px-6 py-28 sm:px-10 lg:py-36">
+          <h2
+            className="text-center text-3xl leading-tight sm:text-4xl md:text-5xl"
+            style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
+          >
+            Other areas of focus
+          </h2>
+          <ul className="mt-14 grid grid-cols-2 gap-x-6 gap-y-12 sm:grid-cols-3 lg:grid-cols-5">
+            {others.map((o) => (
+              <li key={o.slug}>
+                <Link
+                  href={`/focus/${o.slug}`}
+                  className="group flex flex-col items-center text-center"
+                >
+                  <div className="relative h-20 w-20 sm:h-24 sm:w-24">
+                    <Image src={o.icon} alt="" fill sizes="96px" className="object-contain transition group-hover:scale-105" />
+                  </div>
+                  <p
+                    className="mt-4 text-[15px] leading-snug"
+                    style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
+                  >
+                    {o.title}
+                  </p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="bg-foreground text-background">
+        <div className="mx-auto max-w-[1100px] px-6 py-28 text-center sm:px-10 lg:py-36">
+          <h2
+            className="text-4xl leading-[1.1] sm:text-5xl md:text-[56px]"
+            style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
+          >
+            Get started with Viva Counselling today.
+          </h2>
+          <div className="mt-10 flex justify-center">
+            <CtaButton href={site.bookingUrl} external>
+              Book now
+            </CtaButton>
           </div>
         </div>
       </section>

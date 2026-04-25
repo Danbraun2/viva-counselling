@@ -1,138 +1,175 @@
-import Link from "next/link";
-import { site, testimonials } from "@/lib/site";
+import Image from "next/image";
+import { site } from "@/lib/site";
+import { SectionHero } from "@/components/section-hero";
+import { CtaButton } from "@/components/cta-button";
+
+// Mirrors www.vivacounselling.ca/about:
+//   1. Hero — Brené Brown quote (artyom-panfilov bg, theme=black, overlay=0.48)
+//   2. About Jaclyn — Founder, MSW, RSW (Elle-Group-11 portrait)
+//   3. Rates — Individual / Couples / Family Consultations
+//   4. CTA — Get started with Viva Counselling today.
 
 export const metadata = { title: "About" };
 
-const modalities = [
+const rates = [
   {
-    title: "Somatic psychotherapy",
-    body: "Listening to the body as much as the story — gently working with sensation, breath, and nervous-system patterns.",
+    title: "Individual Sessions",
+    duration: "50 mins",
+    price: "$185",
+    note: "Online or in-person",
   },
   {
-    title: "Attachment theory",
-    body: "Understanding how early relationships shape the way we connect, trust, and protect ourselves today.",
+    title: "Couples Sessions",
+    duration: "50 mins",
+    price: "$215",
+    note: "Online or in-person",
   },
   {
-    title: "Trauma-informed practice",
-    body: "Pacing the work with safety, choice, and consent at every step — never pushing beyond what feels manageable.",
-  },
-  {
-    title: "EFFT",
-    body: "Emotion-Focused Family Therapy to support parents and caregivers in repairing and strengthening connection.",
-  },
-  {
-    title: "CBT & DBT",
-    body: "Practical, skills-based approaches for anxious thoughts, intense emotions, and getting unstuck.",
-  },
-  {
-    title: "Compassionate collaboration",
-    body: "Above all, the relationship — a partnership that respects your goals, your pace, and your wisdom.",
+    title: "Family Consultations",
+    duration: "50 mins",
+    price: "$215",
+    note: "Online or in-person",
   },
 ];
 
 export default function AboutPage() {
   return (
     <>
-      <section className="mx-auto max-w-5xl px-4 pt-16 sm:px-6 sm:pt-24 lg:px-8 lg:pt-32">
-        <p className="text-xs font-semibold uppercase tracking-widest text-primary">About</p>
-        <h1 className="mt-3 font-serif text-4xl leading-tight sm:text-5xl lg:text-6xl">
-          Meet Jaclyn —{" "}
-          <span className="italic text-primary">founder & therapist.</span>
-        </h1>
-        <p className="mt-6 max-w-2xl text-lg text-muted">
-          MSW, RSW. Registered social worker and somatic therapist based in
-          Vancouver, supporting clients across British Columbia.
-        </p>
-      </section>
+      <SectionHero
+        image="/images/artyom-panfilov-tTSkzqDklWk.jpg"
+        overlay={0.48}
+        theme="black"
+        height="large"
+        align="center"
+      >
+        <div className="max-w-3xl text-center mx-auto">
+          <p
+            className="text-2xl italic leading-snug sm:text-3xl md:text-4xl"
+            style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300 }}
+          >
+            &ldquo;What we don&apos;t need in the midst of struggle is shame for being
+            human.&rdquo;
+          </p>
+          <p
+            className="mt-6 text-[15px] tracking-[0.04em]"
+            style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
+          >
+            — Brené Brown
+          </p>
+        </div>
+      </SectionHero>
 
-      <section className="mx-auto mt-16 grid max-w-5xl gap-12 px-4 sm:px-6 lg:grid-cols-5 lg:px-8">
-        <div className="lg:col-span-2">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-border bg-surface-muted">
-            <div className="absolute inset-0 bg-gradient-to-br from-accent/30 via-transparent to-primary/30" />
-            <svg className="absolute inset-0 h-full w-full opacity-50" viewBox="0 0 400 500" fill="none" aria-hidden>
-              <circle cx="200" cy="200" r="120" className="fill-current text-primary/30" />
-              <circle cx="120" cy="380" r="80" className="fill-current text-accent/40" />
-              <circle cx="320" cy="380" r="60" className="fill-current text-primary/20" />
-            </svg>
-            <div className="absolute bottom-6 left-6 rounded-2xl border border-border bg-background/85 px-4 py-2 text-sm backdrop-blur">
-              Jaclyn · MSW, RSW
+      {/* About Jaclyn */}
+      <section className="bg-background">
+        <div className="mx-auto grid max-w-[1280px] gap-14 px-6 py-28 sm:px-10 lg:grid-cols-12 lg:gap-20 lg:py-36">
+          <div className="lg:col-span-5">
+            <div className="relative aspect-[4/5] overflow-hidden bg-surface-cream">
+              <Image
+                src="/images/Elle-Group-11.jpg"
+                alt="Jaclyn — Founder, MSW, RSW"
+                fill
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+          </div>
+          <div className="lg:col-span-7">
+            <h1
+              className="text-4xl leading-[1.1] sm:text-5xl md:text-[56px]"
+              style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
+            >
+              About Jaclyn
+            </h1>
+            <p className="mt-3 text-[15px] uppercase tracking-[0.18em] text-muted-foreground">
+              Founder, MSW, RSW
+            </p>
+            <div className="mt-8 space-y-5 text-[18px] leading-[1.75] text-foreground/85">
+              <p>
+                I&apos;m Jaclyn, a registered social worker and somatic therapist
+                with a deep commitment to supporting people through life&apos;s
+                most tender and transformative moments. My professional and
+                personal experiences shape how I show up in this work — with
+                empathy, humility, and a deep respect for your unique experience.
+              </p>
+              <p>
+                Wherever you are in your journey, I offer a space where you can
+                feel safe, supported, and seen, exactly as you are. Together we
+                can move towards your therapeutic goals with curiosity and care
+                as we explore what coping and healing look like for you.
+              </p>
+              <p>
+                My therapeutic work integrates somatic psychotherapy, attachment
+                theory, trauma-informed practice, emotion-focused family therapy
+                (EFFT), cognitive behavioural therapy (CBT), and dialectical
+                behaviour therapy (DBT). The compassionate, collaborative
+                relationship between us is the most important ingredient — change
+                happens in connection.
+              </p>
+            </div>
+            <div className="mt-10">
+              <CtaButton href={site.bookingUrl} external>
+                Book a free consultation
+              </CtaButton>
             </div>
           </div>
         </div>
-
-        <div className="space-y-6 text-base leading-relaxed text-foreground/90 lg:col-span-3">
-          <p>
-            I came to this work through a deep respect for the resilience of the
-            people I sit with. Every client carries a story shaped by lived
-            experience — and that experience is the foundation we build from
-            together.
-          </p>
-          <p>
-            My role is to create a space where you feel genuinely seen and heard.
-            That means meeting you with warmth, working at a pace that respects
-            your nervous system, and building therapy around the goals that
-            matter most to you — not a one-size-fits-all template.
-          </p>
-          <p>
-            My approach integrates somatic psychotherapy, attachment theory,
-            trauma-informed practice, emotion-focused family therapy (EFFT),
-            cognitive behavioural therapy (CBT), and dialectical behaviour
-            therapy (DBT). The compassionate, collaborative relationship between
-            us is the most important ingredient — change happens in connection.
-          </p>
-        </div>
       </section>
 
-      <section className="mx-auto mt-24 max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="rounded-3xl border border-border bg-surface-muted/50 p-8 sm:p-12 lg:p-16">
-          <p className="text-xs font-semibold uppercase tracking-widest text-primary">Approach</p>
-          <h2 className="mt-3 font-serif text-3xl sm:text-4xl">How we&apos;ll work together</h2>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {modalities.map((m) => (
-              <div key={m.title} className="rounded-2xl border border-border bg-surface p-6">
-                <h3 className="font-serif text-lg">{m.title}</h3>
-                <p className="mt-2 text-sm text-muted">{m.body}</p>
-              </div>
+      {/* Rates */}
+      <section className="bg-surface-cream">
+        <div className="mx-auto max-w-[1100px] px-6 py-28 sm:px-10 lg:py-36">
+          <h2
+            className="text-center text-4xl leading-[1.1] sm:text-5xl md:text-[56px]"
+            style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
+          >
+            Rates
+          </h2>
+          <ul className="mt-16 grid gap-12 sm:grid-cols-3 sm:gap-8">
+            {rates.map((r) => (
+              <li
+                key={r.title}
+                className="flex flex-col items-center text-center"
+              >
+                <h3
+                  className="text-2xl leading-tight"
+                  style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
+                >
+                  {r.title}
+                </h3>
+                <p className="mt-4 text-[14px] uppercase tracking-[0.18em] text-muted-foreground">
+                  {r.duration}
+                </p>
+                <p
+                  className="mt-3 text-5xl"
+                  style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300 }}
+                >
+                  {r.price}
+                </p>
+                <p className="mt-3 text-[15px] text-muted-foreground">{r.note}</p>
+              </li>
             ))}
+          </ul>
+          <div className="mt-16 text-center">
+            <CtaButton href={site.bookingUrl} external>
+              Book now
+            </CtaButton>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto mt-24 max-w-3xl px-4 sm:px-6 lg:px-8">
-        <figure className="rounded-3xl border border-border bg-surface p-8 sm:p-12">
-          <p className="text-xs uppercase tracking-widest text-primary">Client reflection</p>
-          <blockquote className="mt-4 font-serif text-2xl leading-relaxed sm:text-3xl">
-            &ldquo;{testimonials[0].quote}&rdquo;
-          </blockquote>
-          <figcaption className="mt-6 text-sm">
-            <span className="font-medium">{testimonials[0].author}</span>
-            <span className="text-muted"> · {testimonials[0].role}</span>
-          </figcaption>
-        </figure>
-      </section>
-
-      <section className="mx-auto mt-24 max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="rounded-3xl bg-primary px-8 py-12 text-primary-foreground sm:px-12">
-          <div className="grid items-center gap-6 lg:grid-cols-2">
-            <h2 className="font-serif text-3xl sm:text-4xl">
-              Curious if we&apos;re a fit?
-            </h2>
-            <div className="flex flex-wrap gap-3 lg:justify-end">
-              <a
-                href={site.bookingUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-full bg-background px-6 py-3 text-sm font-medium text-foreground hover:bg-surface-muted"
-              >
-                Book a free consult
-              </a>
-              <Link
-                href="/services"
-                className="inline-flex items-center justify-center rounded-full border border-primary-foreground/30 px-6 py-3 text-sm font-medium hover:bg-primary-hover"
-              >
-                See services
-              </Link>
-            </div>
+      {/* Final CTA */}
+      <section className="bg-foreground text-background">
+        <div className="mx-auto max-w-[1100px] px-6 py-28 text-center sm:px-10 lg:py-36">
+          <h2
+            className="text-4xl leading-[1.1] sm:text-5xl md:text-[56px]"
+            style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
+          >
+            Get started with Viva Counselling today.
+          </h2>
+          <div className="mt-10 flex justify-center">
+            <CtaButton href={site.bookingUrl} external>
+              Book now
+            </CtaButton>
           </div>
         </div>
       </section>

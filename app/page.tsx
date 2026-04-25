@@ -27,7 +27,7 @@ export default function Home() {
               objectPosition: `${homeImages.heroFocal.x}% ${homeImages.heroFocal.y}%`,
             }}
           />
-          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 bg-black/20" />
 
           <div className="relative z-10 flex h-full items-end">
             <div className="mx-auto w-full max-w-[1500px] px-6 pb-20 sm:px-10 sm:pb-24 lg:pb-28">

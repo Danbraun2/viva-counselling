@@ -1,78 +1,115 @@
 import Link from "next/link";
-import { focusAreas, services, site } from "@/lib/site";
-import { FocusIcon } from "@/components/focus-icon";
+import Image from "next/image";
+import { services, site, testimonials } from "@/lib/site";
+import { focusAreasFull } from "@/lib/focus";
+import { SectionHero } from "@/components/section-hero";
+import { CtaButton } from "@/components/cta-button";
 
-export const metadata = { title: "Services & Rates" };
+// Mirrors www.vivacounselling.ca/services:
+//   1. Hero — "You have a story to tell." (linda-christiansen, theme=black, overlay=0.25)
+//   2. Services — Individual / Youth / Couples / Family with descriptions
+//   3. Areas of Focus — icons grid
+//   4. Testimonial
+//   5. CTA — Questions before getting started?
+
+export const metadata = { title: "Services" };
 
 export default function ServicesPage() {
   return (
     <>
-      <section className="mx-auto max-w-5xl px-4 pt-16 sm:px-6 sm:pt-24 lg:px-8 lg:pt-32">
-        <p className="text-xs font-semibold uppercase tracking-widest text-primary">Services</p>
-        <h1 className="mt-3 font-serif text-4xl leading-tight sm:text-5xl lg:text-6xl">
-          You have a story to tell.{" "}
-          <span className="italic text-primary">VIVA is here to listen.</span>
-        </h1>
-        <p className="mt-6 max-w-2xl text-lg text-muted">
-          All sessions are 50 minutes and offered online or in person at our
-          Granville Street office. A free 15-minute consultation is available so
-          we can get a feel for one another before booking.
-        </p>
-      </section>
+      <SectionHero
+        image="/images/linda-christiansen-BAQsPV1HaS8.jpg"
+        overlay={0.25}
+        theme="black"
+        height="regular"
+        align="center"
+      >
+        <div className="text-center">
+          <h1
+            className="text-4xl leading-[1.05] sm:text-5xl md:text-6xl lg:text-[68px]"
+            style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
+          >
+            You have a story to tell.
+          </h1>
+        </div>
+      </SectionHero>
 
-      <section className="mx-auto mt-16 max-w-6xl px-4 sm:px-6 lg:px-8">
-        <ul className="grid gap-6 lg:grid-cols-2">
-          {services.map((s) => (
-            <li
-              key={s.slug}
-              id={s.slug}
-              className="flex flex-col rounded-3xl border border-border bg-surface p-8 sm:p-10"
-            >
-              <div className="flex items-baseline justify-between gap-4">
-                <h2 className="font-serif text-2xl sm:text-3xl">{s.title}</h2>
-                <span className="font-serif text-2xl text-primary">{s.price}</span>
-              </div>
-              <p className="mt-1 text-xs uppercase tracking-widest text-muted">
-                {s.duration} · Online or in-person
-              </p>
-              <p className="mt-5 text-base leading-relaxed text-foreground/90">
-                {s.description}
-              </p>
-              <div className="mt-8">
-                <a
-                  href={site.bookingUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary-hover"
-                >
-                  Book {s.title.toLowerCase()} →
-                </a>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="mx-auto mt-24 max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="rounded-3xl border border-border bg-surface-muted/50 p-8 sm:p-12 lg:p-16">
-          <p className="text-xs font-semibold uppercase tracking-widest text-primary">
-            Areas of focus
-          </p>
-          <h2 className="mt-3 font-serif text-3xl sm:text-4xl">
-            Where I&apos;m especially well-suited to support you
+      {/* Services list */}
+      <section className="bg-background">
+        <div className="mx-auto max-w-[1100px] px-6 py-28 sm:px-10 lg:py-36">
+          <h2
+            className="text-center text-4xl leading-[1.1] sm:text-5xl md:text-[56px]"
+            style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
+          >
+            Services
           </h2>
-          <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {focusAreas.map((f) => (
-              <li key={f.title}>
+
+          <ul className="mt-16 space-y-20">
+            {services.map((s) => (
+              <li
+                key={s.slug}
+                id={s.slug}
+                className="grid gap-10 lg:grid-cols-12 lg:gap-16"
+              >
+                <div className="lg:col-span-4">
+                  <h3
+                    className="text-3xl leading-tight sm:text-4xl"
+                    style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
+                  >
+                    {s.title}
+                  </h3>
+                  <p className="mt-4 text-[14px] uppercase tracking-[0.18em] text-muted-foreground">
+                    {s.duration} · {s.price}
+                  </p>
+                </div>
+                <div className="lg:col-span-8">
+                  <p className="text-[18px] leading-[1.75] text-foreground/85">
+                    {s.description}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-20 text-center">
+            <CtaButton href={site.bookingUrl} external>
+              Book a free consultation
+            </CtaButton>
+          </div>
+        </div>
+      </section>
+
+      {/* Areas of Focus icons */}
+      <section className="bg-surface-cream">
+        <div className="mx-auto max-w-[1280px] px-6 py-28 sm:px-10 lg:py-36">
+          <h2
+            className="text-center text-4xl leading-[1.1] sm:text-5xl md:text-[56px]"
+            style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
+          >
+            Areas of Focus
+          </h2>
+          <ul className="mt-16 grid grid-cols-2 gap-x-6 gap-y-12 sm:grid-cols-3 lg:grid-cols-5">
+            {focusAreasFull.map((f) => (
+              <li key={f.slug}>
                 <Link
                   href={`/focus/${f.slug}`}
-                  className="flex items-center gap-3 rounded-2xl border border-border bg-surface px-4 py-3 text-sm transition hover:border-primary/40 hover:bg-surface-muted"
+                  className="group flex flex-col items-center text-center transition"
                 >
-                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-primary">
-                    <FocusIcon name={f.icon} />
-                  </span>
-                  <span className="flex-1">{f.title}</span>
-                  <span className="text-muted">→</span>
+                  <div className="relative h-20 w-20 sm:h-24 sm:w-24">
+                    <Image
+                      src={f.icon}
+                      alt=""
+                      fill
+                      sizes="96px"
+                      className="object-contain transition group-hover:scale-105"
+                    />
+                  </div>
+                  <p
+                    className="mt-4 text-[15px] leading-snug text-foreground"
+                    style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
+                  >
+                    {f.title}
+                  </p>
                 </Link>
               </li>
             ))}
@@ -80,31 +117,41 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="mx-auto mt-24 max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-        <h2 className="font-serif text-3xl sm:text-4xl">
-          Insurance & receipts
-        </h2>
-        <p className="mt-4 text-muted">
-          As a Registered Social Worker (RSW), sessions are typically covered
-          under the social worker / counselling benefit of most extended-health
-          plans. A receipt with my registration number is provided after each
-          session for direct submission to your insurer.
-        </p>
-        <div className="mt-8 flex justify-center gap-3">
-          <Link
-            href="/contact"
-            className="inline-flex items-center rounded-full border border-border bg-surface px-5 py-2.5 text-sm font-medium hover:bg-surface-muted"
+      {/* Testimonial */}
+      <section className="bg-background">
+        <div className="mx-auto max-w-[900px] px-6 py-28 text-center sm:px-10 lg:py-36">
+          <figure>
+            <blockquote
+              className="text-2xl italic leading-[1.4] sm:text-3xl md:text-[34px]"
+              style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
+            >
+              &ldquo;{testimonials[2].quote}&rdquo;
+            </blockquote>
+            <figcaption
+              className="mt-10 text-[15px] tracking-wide text-muted-foreground"
+              style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
+            >
+              {testimonials[2].author}, {testimonials[2].role}
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="bg-foreground text-background">
+        <div className="mx-auto max-w-[1100px] px-6 py-28 text-center sm:px-10 lg:py-36">
+          <h2
+            className="text-4xl leading-[1.1] sm:text-5xl md:text-[56px]"
+            style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
           >
-            Ask a question
-          </Link>
-          <a
-            href={site.bookingUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary-hover"
-          >
-            Book a free consult
-          </a>
+            Questions before getting started?
+          </h2>
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
+            <CtaButton href="/contact">Contact us</CtaButton>
+            <CtaButton href={site.bookingUrl} external variant="outline-light">
+              Book now
+            </CtaButton>
+          </div>
         </div>
       </section>
     </>
