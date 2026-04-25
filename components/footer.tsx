@@ -4,6 +4,15 @@ import { nav, site } from "@/lib/site";
 export function Footer() {
   return (
     <footer className="mt-24 border-t border-border bg-surface-muted/40">
+      <div
+        role="note"
+        className="border-b border-border bg-surface px-4 py-3 text-center text-xs text-muted sm:px-6 lg:px-8"
+      >
+        <strong className="font-medium text-foreground">In crisis?</strong>{" "}
+        Please call or text <a href="tel:988" className="text-primary hover:underline">988</a>{" "}
+        (Canada Suicide Crisis Helpline) or 911. Therapy is not a crisis service.
+      </div>
+
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-4 lg:px-8">
         <div className="lg:col-span-2">
           <p className="font-serif text-2xl">{site.name}</p>
@@ -37,6 +46,16 @@ export function Footer() {
                 Book a free consultation
               </a>
             </li>
+            <li>
+              <a
+                className="hover:text-primary"
+                href={site.psychologyToday}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Psychology Today profile
+              </a>
+            </li>
           </ul>
         </div>
       </div>
@@ -50,6 +69,8 @@ export function Footer() {
                 {item.label}
               </Link>
             ))}
+            <Link href="/privacy" className="hover:text-foreground">Privacy</Link>
+            <Link href="/terms" className="hover:text-foreground">Terms</Link>
           </nav>
         </div>
       </div>
