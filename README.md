@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# VIVA Counselling
 
-## Getting Started
+Marketing site for VIVA Counselling — a Vancouver counselling practice.
+Built with Next.js 16 (App Router), Tailwind CSS v4, TypeScript, and Vercel.
 
-First, run the development server:
+## Quick start
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open <http://localhost:3000>.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+app/
+  page.tsx              Home
+  about/, services/     Static pages
+  focus/                Index + dynamic [slug] for 10 areas of focus
+  contact/              Form (server action) + Jane App link
+  faq/, privacy/, terms/, book/
+  sitemap.ts, robots.ts, opengraph-image.tsx, icon.tsx
+components/
+  header, footer, theme-toggle, contact-form, media-slot, focus-icon, json-ld
+lib/
+  site.ts   Site-wide data (nav, services, address)
+  focus.ts  Full content for all 10 focus pages
+```
 
-## Learn More
+## Configuration
 
-To learn more about Next.js, take a look at the following resources:
+Copy `.env.example` to `.env.local` and fill in the keys you need.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Variable | Purpose |
+| --- | --- |
+| `RESEND_API_KEY` | Required for the contact form to actually deliver email. Without it, submissions are logged to the server console. |
+| `CONTACT_TO_EMAIL` | Inbox that receives contact-form messages (default: vivamindfulnessgroup@gmail.com). |
+| `CONTACT_FROM_EMAIL` | The `From:` line on outgoing email — must be a domain verified in Resend. |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Adding images
 
-## Deploy on Vercel
+The site renders gradient placeholders wherever a real image is missing. To
+swap one in, drop the file into `public/images/` and pass the path to a
+`MediaSlot` (e.g. `<MediaSlot src="/images/jaclyn.jpg" alt="…" />`).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deploy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Connected to Vercel. Pushes to `main` deploy automatically.
