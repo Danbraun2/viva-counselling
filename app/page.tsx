@@ -31,15 +31,15 @@ export default function Home() {
 
           <div className="relative z-10 flex h-full items-end">
             <div className="mx-auto w-full max-w-[1500px] px-6 pb-20 sm:px-10 sm:pb-24 lg:pb-28">
-              <div className="max-w-[920px] text-white">
+              <div className="max-w-[1000px] text-white">
                 <p
-                  className="text-[15px] tracking-[0.04em]"
+                  className="text-[20px] sm:text-[22px] tracking-wide opacity-90"
                   style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
                 >
                   Welcome to Viva Counselling
                 </p>
                 <h1
-                  className="mt-4 text-4xl leading-[1.05] sm:text-5xl md:text-6xl lg:text-[68px]"
+                  className="mt-3 text-5xl leading-[1.05] sm:text-6xl md:text-7xl lg:text-[80px]"
                   style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
                 >
                   Accessible and personalized mental health support in-person or
@@ -53,7 +53,7 @@ export default function Home() {
 
       {/* 2. Approach */}
       <section className="bg-background">
-        <div className="mx-auto max-w-[1100px] px-6 py-28 sm:px-10 lg:py-36">
+        <div className="mx-auto max-w-[1100px] px-6 py-20 sm:px-10 sm:py-24 lg:py-28">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-20">
             <div className="lg:col-span-4">
               <h2
@@ -79,7 +79,7 @@ export default function Home() {
 
       {/* 3. About me */}
       <section className="bg-surface-cream">
-        <div className="mx-auto grid max-w-[1280px] gap-14 px-6 py-28 sm:px-10 lg:grid-cols-12 lg:gap-20 lg:py-36">
+        <div className="mx-auto grid max-w-[1280px] gap-14 px-6 py-20 sm:py-24 sm:px-10 lg:grid-cols-12 lg:gap-20 lg:py-28">
           <div className="lg:col-span-5">
             <div className="relative aspect-[4/5] overflow-hidden bg-background">
               <Image
@@ -126,7 +126,7 @@ export default function Home() {
 
       {/* 4. Services */}
       <section className="bg-background">
-        <div className="mx-auto max-w-[1500px] px-6 py-28 sm:px-10 lg:py-36">
+        <div className="mx-auto max-w-[1500px] px-6 py-20 sm:px-10 sm:py-24 lg:py-28">
           <ul className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
             {homeServices.map((s) => (
               <li key={s.title} className="flex flex-col">
@@ -164,7 +164,7 @@ export default function Home() {
 
       {/* 5. Testimonial */}
       <section className="bg-surface-cream">
-        <div className="mx-auto max-w-[900px] px-6 py-28 text-center sm:px-10 lg:py-36">
+        <div className="mx-auto max-w-[900px] px-6 py-20 sm:py-24 text-center sm:px-10 lg:py-28">
           <figure>
             <blockquote
               className="text-2xl italic leading-[1.4] text-foreground sm:text-3xl md:text-[34px]"
@@ -184,7 +184,7 @@ export default function Home() {
 
       {/* 6. Final CTA */}
       <section className="bg-foreground text-background">
-        <div className="mx-auto max-w-[1100px] px-6 py-28 text-center sm:px-10 lg:py-36">
+        <div className="mx-auto max-w-[1100px] px-6 py-20 sm:py-24 text-center sm:px-10 lg:py-28">
           <h2
             className="text-4xl leading-[1.1] sm:text-5xl md:text-[56px]"
             style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}

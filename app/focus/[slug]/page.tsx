@@ -61,10 +61,10 @@ export default async function FocusPage({
 
       {/* Title + intro */}
       <section className="bg-background">
-        <div className="mx-auto max-w-[1100px] px-6 py-28 sm:px-10 lg:py-36">
+        <div className="mx-auto max-w-[1100px] px-6 py-20 sm:px-10 sm:py-24 lg:py-28">
           <div className="flex flex-col items-center text-center">
             <div className="relative h-24 w-24 sm:h-28 sm:w-28">
-              <Image src={area.icon} alt="" fill sizes="112px" className="object-contain" />
+              <Image src={area.icon} alt="" fill sizes="112px" className="icon-tinted object-contain" />
             </div>
             <h1
               className="mt-8 text-4xl leading-[1.1] sm:text-5xl md:text-[56px]"
@@ -83,7 +83,7 @@ export default async function FocusPage({
 
       {/* Signs + Help (two-column) */}
       <section className="bg-surface-cream">
-        <div className="mx-auto max-w-[1100px] px-6 py-28 sm:px-10 lg:py-36">
+        <div className="mx-auto max-w-[1100px] px-6 py-20 sm:px-10 sm:py-24 lg:py-28">
           <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
             <div>
               <h2
@@ -125,7 +125,7 @@ export default async function FocusPage({
 
       {/* Other areas */}
       <section className="bg-background">
-        <div className="mx-auto max-w-[1280px] px-6 py-28 sm:px-10 lg:py-36">
+        <div className="mx-auto max-w-[1280px] px-6 py-20 sm:px-10 sm:py-24 lg:py-28">
           <h2
             className="text-center text-3xl leading-tight sm:text-4xl md:text-5xl"
             style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
@@ -140,7 +140,7 @@ export default async function FocusPage({
                   className="group flex flex-col items-center text-center"
                 >
                   <div className="relative h-20 w-20 sm:h-24 sm:w-24">
-                    <Image src={o.icon} alt="" fill sizes="96px" className="object-contain transition group-hover:scale-105" />
+                    <Image src={o.icon} alt="" fill sizes="96px" className="icon-tinted object-contain transition group-hover:scale-105" />
                   </div>
                   <p
                     className="mt-4 text-[15px] leading-snug"
@@ -157,7 +157,7 @@ export default async function FocusPage({
 
       {/* CTA */}
       <section className="bg-foreground text-background">
-        <div className="mx-auto max-w-[1100px] px-6 py-28 text-center sm:px-10 lg:py-36">
+        <div className="mx-auto max-w-[1100px] px-6 py-20 sm:py-24 text-center sm:px-10 lg:py-28">
           <h2
             className="text-4xl leading-[1.1] sm:text-5xl md:text-[56px]"
             style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}

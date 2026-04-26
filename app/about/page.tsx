@@ -37,9 +37,9 @@ export default function AboutPage() {
     <>
       <SectionHero
         image="/images/artyom-panfilov-tTSkzqDklWk.jpg"
-        overlay={0.48}
+        overlay={0.3}
         theme="black"
-        height="large"
+        height="regular"
         align="center"
       >
         <div className="max-w-3xl text-center mx-auto">
@@ -61,7 +61,7 @@ export default function AboutPage() {
 
       {/* About Jaclyn */}
       <section className="bg-background">
-        <div className="mx-auto grid max-w-[1280px] gap-14 px-6 py-28 sm:px-10 lg:grid-cols-12 lg:gap-20 lg:py-36">
+        <div className="mx-auto grid max-w-[1280px] gap-14 px-6 py-20 sm:py-24 sm:px-10 lg:grid-cols-12 lg:gap-20 lg:py-28">
           <div className="lg:col-span-5">
             <div className="relative aspect-[4/5] overflow-hidden bg-surface-cream">
               <Image
@@ -117,7 +117,7 @@ export default function AboutPage() {
 
       {/* Rates */}
       <section className="bg-surface-cream">
-        <div className="mx-auto max-w-[1100px] px-6 py-28 sm:px-10 lg:py-36">
+        <div className="mx-auto max-w-[1100px] px-6 py-20 sm:px-10 sm:py-24 lg:py-28">
           <h2
             className="text-center text-4xl leading-[1.1] sm:text-5xl md:text-[56px]"
             style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
@@ -159,7 +159,7 @@ export default function AboutPage() {
 
       {/* Final CTA */}
       <section className="bg-foreground text-background">
-        <div className="mx-auto max-w-[1100px] px-6 py-28 text-center sm:px-10 lg:py-36">
+        <div className="mx-auto max-w-[1100px] px-6 py-20 sm:py-24 text-center sm:px-10 lg:py-28">
           <h2
             className="text-4xl leading-[1.1] sm:text-5xl md:text-[56px]"
             style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}

@@ -35,7 +35,7 @@ export default function FocusIndexPage() {
       </SectionHero>
 
       <section className="bg-background">
-        <div className="mx-auto max-w-[1280px] px-6 py-28 sm:px-10 lg:py-36">
+        <div className="mx-auto max-w-[1280px] px-6 py-20 sm:px-10 sm:py-24 lg:py-28">
           <ul className="grid grid-cols-2 gap-x-6 gap-y-14 sm:grid-cols-3 lg:grid-cols-5">
             {focusAreasFull.map((f) => (
               <li key={f.slug}>
@@ -49,7 +49,7 @@ export default function FocusIndexPage() {
                       alt=""
                       fill
                       sizes="112px"
-                      className="object-contain transition group-hover:scale-105"
+                      className="icon-tinted object-contain transition group-hover:scale-105"
                     />
                   </div>
                   <p
@@ -66,7 +66,7 @@ export default function FocusIndexPage() {
       </section>
 
       <section className="bg-foreground text-background">
-        <div className="mx-auto max-w-[1100px] px-6 py-28 text-center sm:px-10 lg:py-36">
+        <div className="mx-auto max-w-[1100px] px-6 py-20 sm:py-24 text-center sm:px-10 lg:py-28">
           <h2
             className="text-4xl leading-[1.1] sm:text-5xl md:text-[56px]"
             style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}

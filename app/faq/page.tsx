@@ -128,7 +128,7 @@ export default function FAQPage() {
       </SectionHero>
 
       <section className="bg-background">
-        <div className="mx-auto max-w-[820px] px-6 py-28 sm:px-10 lg:py-36">
+        <div className="mx-auto max-w-[820px] px-6 py-20 sm:px-10 sm:py-24 lg:py-28">
           <ul className="divide-y divide-border-soft border-y border-border-soft">
             {faqs.map((f, i) => (
               <li key={i}>
@@ -156,7 +156,7 @@ export default function FAQPage() {
       </section>
 
       <section className="bg-foreground text-background">
-        <div className="mx-auto max-w-[1100px] px-6 py-28 text-center sm:px-10 lg:py-36">
+        <div className="mx-auto max-w-[1100px] px-6 py-20 sm:py-24 text-center sm:px-10 lg:py-28">
           <h2
             className="text-4xl leading-[1.1] sm:text-5xl md:text-[56px]"
             style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}

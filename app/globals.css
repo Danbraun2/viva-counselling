@@ -111,6 +111,13 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--background);
 }
 
+/* Custom icon set is shipped as white silhouettes ("Preg_White.png" etc).
+   Apply a tonal recolor so they read on a light background. */
+.icon-tinted {
+  filter: brightness(0) saturate(100%) invert(15%) sepia(8%) saturate(800%) hue-rotate(345deg);
+  opacity: 0.85;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }

@@ -36,7 +36,7 @@ export default function ServicesPage() {
 
       {/* Services list */}
       <section className="bg-background">
-        <div className="mx-auto max-w-[1100px] px-6 py-28 sm:px-10 lg:py-36">
+        <div className="mx-auto max-w-[1100px] px-6 py-20 sm:px-10 sm:py-24 lg:py-28">
           <h2
             className="text-center text-4xl leading-[1.1] sm:text-5xl md:text-[56px]"
             style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
@@ -81,7 +81,7 @@ export default function ServicesPage() {
 
       {/* Areas of Focus icons */}
       <section className="bg-surface-cream">
-        <div className="mx-auto max-w-[1280px] px-6 py-28 sm:px-10 lg:py-36">
+        <div className="mx-auto max-w-[1280px] px-6 py-20 sm:px-10 sm:py-24 lg:py-28">
           <h2
             className="text-center text-4xl leading-[1.1] sm:text-5xl md:text-[56px]"
             style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
@@ -101,7 +101,7 @@ export default function ServicesPage() {
                       alt=""
                       fill
                       sizes="96px"
-                      className="object-contain transition group-hover:scale-105"
+                      className="icon-tinted object-contain transition group-hover:scale-105"
                     />
                   </div>
                   <p
@@ -119,7 +119,7 @@ export default function ServicesPage() {
 
       {/* Testimonial */}
       <section className="bg-background">
-        <div className="mx-auto max-w-[900px] px-6 py-28 text-center sm:px-10 lg:py-36">
+        <div className="mx-auto max-w-[900px] px-6 py-20 sm:py-24 text-center sm:px-10 lg:py-28">
           <figure>
             <blockquote
               className="text-2xl italic leading-[1.4] sm:text-3xl md:text-[34px]"
@@ -139,7 +139,7 @@ export default function ServicesPage() {
 
       {/* CTA */}
       <section className="bg-foreground text-background">
-        <div className="mx-auto max-w-[1100px] px-6 py-28 text-center sm:px-10 lg:py-36">
+        <div className="mx-auto max-w-[1100px] px-6 py-20 sm:py-24 text-center sm:px-10 lg:py-28">
           <h2
             className="text-4xl leading-[1.1] sm:text-5xl md:text-[56px]"
             style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400 }}
