@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 :root {
+  color-scheme: light only;
   --background: #fbfaf7;
   --foreground: #1a1a1a;
   --muted-foreground: #5e5b53;
@@ -28,47 +29,19 @@
   --font-display: var(--font-cormorant);
 }
 
-/* Dark mode is opt-in only — Squarespace doesn't have one and auto-switching
-   surprised users on systems set to dark. */
-:root.dark {
-  --background: #14130f;
-  --foreground: #ece6d8;
-  --muted-foreground: #a39c8a;
-  --surface: #1c1b16;
-  --surface-cream: #211f19;
-  --border: #2c2a23;
-  --border-soft: #25231d;
-  --accent: #d59982;
-  --accent-dark: #c78471;
-  --accent-soft: #3a2a23;
-}
-
-:root.light {
-  --background: #fbfaf7;
-  --foreground: #1a1a1a;
-  --muted-foreground: #5e5b53;
-  --surface: #ffffff;
-  --surface-cream: #f4f0e8;
-  --border: #e7e1d4;
-  --border-soft: #efeae0;
-  --accent: #c78471;
-  --accent-dark: #b06b56;
-  --accent-soft: #ecd5c9;
-}
-
 html {
   scroll-behavior: smooth;
+  background: #fbfaf7;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: #fbfaf7;
+  color: #1a1a1a;
   font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 17px;
   line-height: 1.7;
   font-weight: 400;
   letter-spacing: -0.005em;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -77,11 +50,6 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.1;
   letter-spacing: -0.01em;
   color: inherit;
-}
-
-.italic-display {
-  font-style: italic;
-  font-weight: 300;
 }
 
 .eyebrow {
@@ -94,15 +62,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::selection {
-  background: var(--foreground);
-  color: var(--background);
+  background: #1a1a1a;
+  color: #fbfaf7;
 }
 
 /* Custom icon set is shipped as thin white line-drawings on transparent
-   backgrounds. They were designed to sit on a coloured/dark Squarespace
-   section. Keep them white and place them on a coloured circular plate. */
+   backgrounds. Render them on a terracotta circular plate so they read on
+   any section background. */
 .icon-plate {
-  background: var(--accent-dark);
+  background: #b06b56;
   border-radius: 9999px;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
 }
@@ -112,10 +80,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--background);
+  background: #fbfaf7;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--border);
+  background: #e7e1d4;
   border-radius: 4px;
 }

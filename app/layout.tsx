@@ -40,9 +40,7 @@ export const metadata: Metadata = {
   },
 };
 
-const themeInit = `
-(function(){try{var t=localStorage.getItem('theme');if(t==='dark')document.documentElement.classList.add('dark');else document.documentElement.classList.add('light');}catch(e){document.documentElement.classList.add('light');}})();
-`;
+const themeInit = ``;
 
 export default function RootLayout({
   children,

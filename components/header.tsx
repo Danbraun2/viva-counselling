@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { nav, site } from "@/lib/site";
-import { ThemeToggle } from "./theme-toggle";
 
 export function Header() {
   const pathname = usePathname();
@@ -82,9 +81,6 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <div className={onHero ? "text-white" : ""}>
-            <ThemeToggle />
-          </div>
           <a
             href={site.bookingUrl}
             target="_blank"
