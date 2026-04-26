@@ -28,21 +28,8 @@
   --font-display: var(--font-cormorant);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not(.light) {
-    --background: #14130f;
-    --foreground: #ece6d8;
-    --muted-foreground: #a39c8a;
-    --surface: #1c1b16;
-    --surface-cream: #211f19;
-    --border: #2c2a23;
-    --border-soft: #25231d;
-    --accent: #d59982;
-    --accent-dark: #c78471;
-    --accent-soft: #3a2a23;
-  }
-}
-
+/* Dark mode is opt-in only — Squarespace doesn't have one and auto-switching
+   surprised users on systems set to dark. */
 :root.dark {
   --background: #14130f;
   --foreground: #ece6d8;
@@ -115,13 +102,9 @@ h1, h2, h3, h4, h5, h6 {
    backgrounds. They were designed to sit on a coloured/dark Squarespace
    section. Keep them white and place them on a coloured circular plate. */
 .icon-plate {
-  background: var(--accent);
+  background: var(--accent-dark);
   border-radius: 9999px;
-}
-
-.icon-plate-soft {
-  background: var(--surface-cream);
-  border-radius: 9999px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
 }
 
 ::-webkit-scrollbar {
