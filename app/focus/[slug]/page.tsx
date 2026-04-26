@@ -63,8 +63,8 @@ export default async function FocusPage({
       <section className="bg-background">
         <div className="mx-auto max-w-[1100px] px-6 py-20 sm:px-10 sm:py-24 lg:py-28">
           <div className="flex flex-col items-center text-center">
-            <div className="relative h-24 w-24 sm:h-28 sm:w-28">
-              <Image src={area.icon} alt="" fill sizes="112px" className="icon-tinted object-contain" />
+            <div className="icon-plate relative h-24 w-24 sm:h-28 sm:w-28">
+              <Image src={area.icon} alt="" fill sizes="112px" className="object-contain p-4" />
             </div>
             <h1
               className="mt-8 text-4xl leading-[1.1] sm:text-5xl md:text-[56px]"
@@ -139,8 +139,8 @@ export default async function FocusPage({
                   href={`/focus/${o.slug}`}
                   className="group flex flex-col items-center text-center"
                 >
-                  <div className="relative h-20 w-20 sm:h-24 sm:w-24">
-                    <Image src={o.icon} alt="" fill sizes="96px" className="icon-tinted object-contain transition group-hover:scale-105" />
+                  <div className="icon-plate relative h-20 w-20 transition group-hover:scale-[1.04] sm:h-24 sm:w-24">
+                    <Image src={o.icon} alt="" fill sizes="96px" className="object-contain p-3" />
                   </div>
                   <p
                     className="mt-4 text-[15px] leading-snug"

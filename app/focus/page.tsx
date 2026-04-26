@@ -43,13 +43,13 @@ export default function FocusIndexPage() {
                   href={`/focus/${f.slug}`}
                   className="group flex flex-col items-center text-center"
                 >
-                  <div className="relative h-24 w-24 sm:h-28 sm:w-28">
+                  <div className="icon-plate relative h-24 w-24 transition group-hover:scale-[1.04] sm:h-28 sm:w-28">
                     <Image
                       src={f.icon}
                       alt=""
                       fill
                       sizes="112px"
-                      className="icon-tinted object-contain transition group-hover:scale-105"
+                      className="object-contain p-4"
                     />
                   </div>
                   <p

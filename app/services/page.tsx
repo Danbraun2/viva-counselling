@@ -95,13 +95,13 @@ export default function ServicesPage() {
                   href={`/focus/${f.slug}`}
                   className="group flex flex-col items-center text-center transition"
                 >
-                  <div className="relative h-20 w-20 sm:h-24 sm:w-24">
+                  <div className="icon-plate relative h-20 w-20 transition group-hover:scale-[1.04] sm:h-24 sm:w-24">
                     <Image
                       src={f.icon}
                       alt=""
                       fill
                       sizes="96px"
-                      className="icon-tinted object-contain transition group-hover:scale-105"
+                      className="object-contain p-3"
                     />
                   </div>
                   <p
